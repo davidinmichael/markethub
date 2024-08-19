@@ -2,13 +2,30 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
 
 from .models import *
 from .serializers import *
 
+from django.template.loader import get_template
+from django.http import HttpResponse
+
+def test_view(request):
+    # template = get_template('base.html')
+    # return HttpResponse(template.render())
+    return render(request, "base.html")
+
+
+
+class Index(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return render(request, "account/index.html")
 
 
 class LoginView(APIView):
+    permission_classes = [AllowAny]
     
     def post(self, request):
         serializer = LoginSerializer(data=request.data)

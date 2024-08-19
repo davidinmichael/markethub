@@ -35,7 +35,7 @@ class AccountManager(BaseUserManager):
         return user
 
 
-class Account(models.model):
+class Account(AbstractUser):
     first_name = models.CharField(max_length=20, null=True, blank=True)
     last_name = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(unique=True)
