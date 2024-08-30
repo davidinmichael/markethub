@@ -7,15 +7,6 @@ from rest_framework.permissions import AllowAny
 from .models import *
 from .serializers import *
 
-from django.template.loader import get_template
-from django.http import HttpResponse
-
-def test_view(request):
-    # template = get_template('base.html')
-    # return HttpResponse(template.render())
-    return render(request, "base.html")
-
-
 
 class Index(APIView):
     permission_classes = [AllowAny]
