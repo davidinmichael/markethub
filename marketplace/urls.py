@@ -23,7 +23,7 @@ from account.views import Index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("account/", include("account.urls")),
-    path("", Index.as_view()),
+    # path("", Index.as_view()),
 ]
 
 if settings.DEBUG:
