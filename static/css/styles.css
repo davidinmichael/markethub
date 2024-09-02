@@ -33,7 +33,7 @@ a {
 
 .logo h1 a {
     font-size: 3rem;
-    color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .nav-links {

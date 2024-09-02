@@ -6,6 +6,7 @@ from rest_framework.permissions import AllowAny
 
 from .models import *
 from .serializers import *
+from .forms import *
 
 
 class Index(APIView):
@@ -15,17 +16,14 @@ class Index(APIView):
         return render(request, "account/index.html")
 
 
-class LoginView(APIView):
-    permission_classes = [AllowAny]
-
-    def get(self, request):
-        return render(request, "account/login.html")
-    
-    def post(self, request):
-        serializer = LoginSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            email = serializer.validated_data["email"]
-            password = serializer.validated_data["password"]
+def login_view(request):
+    if request.method == "POST":
+        login_form = LoginForm(request.POST)
+        print("Post request")
+        if login_form.is_valid():
+            email = login_form.cleaned_data["email"]
+            password = login_form.cleaned_data["password"]
+            print(f"Email: {email}, Password: {password}")
 
             try:
                 account = Account.objects.get(email=email)
@@ -43,4 +41,5 @@ class LoginView(APIView):
                 return render(request, "account/index.html", context)
             return render(request, "account/login.html")
         return render(request, "account/login.html")
+    return render(request, "account/login.html")
             
