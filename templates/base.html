@@ -1,14 +1,22 @@
 {% load static %}
+{% load django_browser_reload %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
     <title>{% block title %}Home{% endblock title %}</title>
   </head>
   <body>
-    {% block content %}
-    {% endblock content %}
+    <div class="container">
+      {% include "nav.html" %}
+      {% block content %}
+      {% endblock content %}
+      {% include "footer.html" %}
+    </div>
+
+    {% django_browser_reload_script %}
   </body>
 </html>

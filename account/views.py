@@ -17,6 +17,9 @@ class Index(APIView):
 
 class LoginView(APIView):
     permission_classes = [AllowAny]
+
+    def get(self, request):
+        return render(request, "account/login.html")
     
     def post(self, request):
         serializer = LoginSerializer(data=request.data)

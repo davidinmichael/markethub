@@ -1,0 +1,19 @@
+
+<div class="nav">
+    <div class="logo"><h1><a href="">d'Market Place</a></h1></div>
+    <div class="nav-links">
+        <a href="{% url 'home' %}" class="nav-link">Home</a>
+        <a href="" class="nav-link">Market</a>
+        <a href="" class="nav-link">Contact</a>
+        <a href="" class="nav-link">About</a>
+
+        {% if user.is_authenticated %}
+            <a href="" class="nav-link">Profile</a>
+            <a href="" class="nav-link">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="nav-link">Login</a>
+            <a href="" class="nav-link">Sign Up</a>
+        {% endif %}
+
+    </div>
+</div>
