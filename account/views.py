@@ -54,4 +54,9 @@ def register_view(request):
         }
         return render(request, "account/register.html", context)
     return render(request, "account/register.html")
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("home")
             
