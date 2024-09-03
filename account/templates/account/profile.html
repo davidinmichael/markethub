@@ -3,16 +3,36 @@
 {% block content %}
 <h1 class="profile-title">My Profile</h1>
 
-  <div class="profile-container">
+  <div class="profile">
+      <div class="profile-container">
+        <div class="profile-details">
+            <h2>{{user.first_name}} {{user.last_name}}</h2>
+            <p>Email: {{user.email}}</p>
+            <p>Password: {{user.password}}</p>
+        </div>
+        <div class="profile-picture">
+            <img src="{{user.profile_picture.url}}" alt="Profile Picture">
+        </div>
+      
+      </div>
 
-    <div class="profile-details">
-        <h2>{{user.first_name}} {{user.last_name}}</h2>
-        <p>Email: {{user.email}}</p>
-    </div>
-
-    <div class="profile-picture">
-        <img src="{{user.profile_picture.url}}" alt="Profile Picture">
-    </div>
-    
+      <div class="change-password">
+        <form action="{% url 'change_password' %}" method="post">
+            {% csrf_token %}
+                <div class="username">
+                    <input type="password" placeholder="Password" name="password">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="username">
+                    <input type="password" placeholder="New Password" name="new_password">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="username">
+                    <input type="password" placeholder="Confirm Password" name="confirm_password">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+            <input class="btn" type="submit" value="Change Password">
+        </form>
+      </div>
   </div>
 {% endblock content %}

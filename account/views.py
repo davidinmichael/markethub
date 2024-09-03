@@ -29,7 +29,7 @@ def login_view(request):
 
             # user = authenticate(request, email=email, password=password)
             user = Account.objects.get(email=email)
-            if user is not None:
+            if user.password == password:
                 print("User is not None")
                 login(request, user)
                 return render(request, "account/index.html")
@@ -47,7 +47,8 @@ def register_view(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            login(request, user)
             return redirect("profile")
         context = {
             "message": "User with this email already exist",
@@ -58,7 +59,7 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect("home")
+    return redirect("login")
 
 
 
@@ -68,3 +69,24 @@ def profile_view(request):
         "user": user,
     }
     return render(request, "account/profile.html", context)
+
+
+def change_password(request):
+    user = request.user
+    if request.method == "POST":
+        form = ChangePasswordForm(request.POST)
+        if form.is_valid():
+            password = form.cleaned_data["password"]
+            new_password = form.cleaned_data["new_password"]
+            confirm_password = form.cleaned_data["confirm_password"]
+
+            if user.password == password:
+                if new_password != confirm_password:
+                    return render(request, "account/profile.html")
+                # user.set_password(new_password)
+                user.password = new_password
+                user.save()
+                return redirect("login")
+                
+            return render(request, "account/profile.html")
+    return render(request, "account/profile.html")

@@ -17,3 +17,9 @@ class RegisterForm(forms.ModelForm):
         if Account.objects.filter(email=email).exists():
             return forms.ValidationError("User Already Exist")
         return email
+
+
+class ChangePasswordForm(forms.Form):
+    password = forms.CharField(max_length=20)
+    new_password = forms.CharField(max_length=20)
+    confirm_password = forms.CharField(max_length=20)

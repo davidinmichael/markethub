@@ -1,4 +1,10 @@
 
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .profile-container {
     display: grid;
     grid-template-columns: 3fr 1fr;
@@ -22,3 +28,4 @@
 .profile-picture img {
     width: 10rem;
 }
+
