@@ -4,6 +4,8 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 
+from django.contrib.auth import authenticate, login, logout
+
 from .models import *
 from .serializers import *
 from .forms import *
@@ -25,22 +27,18 @@ def login_view(request):
             password = login_form.cleaned_data["password"]
             print(f"Email: {email}, Password: {password}")
 
-            try:
-                account = Account.objects.get(email=email)
-            except Account.DoesNotExist:
-                context = {
-                    "message": "Invalid email address.",
-                }
-                return render(request, "account/login.html", context)
-            
-            if account.check_password(password):
-                account_serializer = AccountSerializer(account).data
-                print(f"User: {account_serializer}")
-                context = {
-                    "user": account_serializer,
-                }
-                return render(request, "account/index.html", context)
-            return render(request, "account/login.html")
+            # user = authenticate(request, email=email, password=password)
+            user = Account.objects.get(email=email)
+            if user is not None:
+                print("User is not None")
+                login(request, user)
+                return render(request, "account/index.html")
+                
+            context = {
+                "message": "Invalid email address.",
+            }
+            return render(request, "account/login.html", context)
+
         return render(request, "account/login.html")
     return render(request, "account/login.html")
 
