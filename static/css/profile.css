@@ -1,0 +1,24 @@
+
+.profile-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 3rem 0;
+}
+
+.profile-title {
+    font-size: 3rem;
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+.profile-details {
+    text-align: center;
+}
+
+.profile-details h2, .profile-details p {
+    font-size: 2rem;
+}
+
+.profile-picture img {
+    width: 10rem;
+}

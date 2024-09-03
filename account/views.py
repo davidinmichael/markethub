@@ -48,7 +48,7 @@ def register_view(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("home")
+            return redirect("profile")
         context = {
             "message": "User with this email already exist",
         }
@@ -59,4 +59,12 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect("home")
-            
+
+
+
+def profile_view(request):
+    user = request.user
+    context = {
+        "user": user,
+    }
+    return render(request, "account/profile.html", context)

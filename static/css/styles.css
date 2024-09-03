@@ -12,9 +12,8 @@
 }
 
 .container {
-    display: grid;
-    position: relative;
     /* min-height: 100%; */
+    position: relative;
 }
 
 .nav {
@@ -52,14 +51,13 @@ a {
     color: var(--secondary-color);
 }
 
-/* .footer {
+.footer {
+    margin-top: auto;
+    background-color: var(--primary-color);
+    padding: 2rem;
     position: fixed;
     bottom: 0;
     width: 100%;
-} */
-
-.footer {
-    margin-top: 3rem;
 }
 
 .footer p {

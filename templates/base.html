@@ -1,5 +1,4 @@
-{% load static %}
-{% load django_browser_reload %}
+{% load static %} {% load django_browser_reload %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,13 +7,13 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'css/login.css' %}" />
     <link rel="stylesheet" href="{% static 'css/register.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
     <title>{% block title %}Home{% endblock title %}</title>
   </head>
   <body>
     <div class="container">
       {% include "nav.html" %}
-      {% block content %}
-      {% endblock content %}
+      <div class="content">{% block content %} {% endblock content %}</div>
       {% include "footer.html" %}
     </div>
 
