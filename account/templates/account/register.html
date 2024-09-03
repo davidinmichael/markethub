@@ -6,7 +6,7 @@
     <div class="form">
         <h1>MEMBER REGISTER</h1>
         <div class="form-fields">
-            <form action="{% url 'login' %}" method="post">
+            <form action="{% url 'register' %}" method="post">
                 {% csrf_token %}
                 <div class="username">
                     <input type="email" placeholder="Email" name="email">
@@ -24,7 +24,10 @@
                     <input type="password" placeholder="Password" name="password">
                     <i class="fa-solid fa-lock"></i>
                 </div>
-                <input class="btn" type="submit" value="LOGIN">
+                {% if message %}
+                  <p class="message">{{message}}</p>
+                {% endif %}
+                <input class="btn" type="submit" value="REGISTER">
             </form>
         </div>
         <div class="form-footer">

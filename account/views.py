@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
@@ -35,6 +35,7 @@ def login_view(request):
             
             if account.check_password(password):
                 account_serializer = AccountSerializer(account).data
+                print(f"User: {account_serializer}")
                 context = {
                     "user": account_serializer,
                 }
@@ -42,4 +43,17 @@ def login_view(request):
             return render(request, "account/login.html")
         return render(request, "account/login.html")
     return render(request, "account/login.html")
+
+
+def register_view(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+        context = {
+            "message": "User with this email already exist",
+        }
+        return render(request, "account/register.html", context)
+    return render(request, "account/register.html")
             

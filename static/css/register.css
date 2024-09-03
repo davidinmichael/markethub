@@ -68,7 +68,7 @@ i {
     justify-content: space-between;
 }
 
-.form-footer a {
+.form-footer a, .form-footer P {
     text-decoration: none;
     color: var(--primary-color);
     font-size: 2rem;
