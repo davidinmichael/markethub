@@ -18,7 +18,7 @@
 }
 
 .profile-details {
-    text-align: center;
+    text-align: left;
 }
 
 .profile-details h2, .profile-details p {
@@ -28,4 +28,5 @@
 .profile-picture img {
     width: 10rem;
 }
+
 
