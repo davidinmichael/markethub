@@ -19,3 +19,11 @@ def product_view(request):
         "products": products,
     }
     return render(request, "product/products.html", context)
+
+
+def product_details(request, pk):
+    product = Product.objects.get(id=pk)
+    context = {
+        "product": product,
+    }
+    return render(request, "product/product_detail.html", context)

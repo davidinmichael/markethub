@@ -19,7 +19,6 @@
 .product-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* justify-items: center; */
     gap: 2rem;
 }
 
@@ -31,8 +30,6 @@
 }
 
 .product-title {
-    /* border: solid 0.3rem var(--secondary-color); */
-    /* border-radius: 1rem 1rem 0 0; */
     display: flex;
     justify-content: center;
     height: 20rem;
@@ -40,13 +37,12 @@
 
 .product-img {
     max-width: 100%;
+    object-fit: cover;
 }
 
 .product-body {
     background-color: var(--secondary-color);
     padding: 1rem 2rem;
-    /* border-radius: 0 0 1rem 1rem; */
-    /* min-height: 15rem; */
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -59,7 +55,7 @@
 }
 
 .product-body h3 a:hover {
-    color: var(--secondary-color);
+    color: white;
 }
 
 .product-body p {

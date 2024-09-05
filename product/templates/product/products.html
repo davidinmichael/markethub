@@ -10,7 +10,7 @@
           <img src="{{product.product_image.url}}" alt="" class="product-img" />
         </div>
         <div class="product-body">
-          <h3><a href="#">{{product.name}}</a></h3>
+          <h3><a href="{% url 'product_detail' product.id %}">{{product.name}}</a></h3>
           <p>NGN{{product.price}}</p>
           <!-- <p>{{product.description}}</p> -->
         </div>
