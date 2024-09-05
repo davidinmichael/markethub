@@ -62,3 +62,19 @@
     font-size: 1.5rem;
     color: white;
 }
+
+.product-details {
+    text-align: center;
+}
+
+.product-details h1 {
+    font-size: 3rem;
+}
+
+.product-details h2, .product-details p {
+    font-size: 2rem;
+}
+
+.product-details a {
+    margin-top: 2rem;
+}
