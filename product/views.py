@@ -6,9 +6,11 @@ from .forms import *
 
 def product_view(request):
     if request.method == "POST":
-        form = ProductAddForm(request.POST)
+        form = ProductAddForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save(owner=request.user)
+            product = form.save(commit=False)
+            product.owner = request.user
+            product.save()
             return redirect("products")
         return redirect("products")
     

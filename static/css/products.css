@@ -27,6 +27,7 @@
     border: solid 0.3rem var(--secondary-color);
     border-radius: 1rem;
    box-shadow: 0.1rem 0.1rem 1rem var(--primary-color);
+   display: grid;
 }
 
 .product-title {
@@ -34,13 +35,18 @@
     /* border-radius: 1rem 1rem 0 0; */
     display: flex;
     justify-content: center;
+    height: 20rem;
+}
+
+.product-img {
+    max-width: 100%;
 }
 
 .product-body {
     background-color: var(--secondary-color);
     padding: 1rem 2rem;
     /* border-radius: 0 0 1rem 1rem; */
-    min-height: 15rem;
+    /* min-height: 15rem; */
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
