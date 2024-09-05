@@ -1,5 +1,54 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
-  
+<div class="product-container">
+  <div class="products">
+    <h2>Available Products</h2>
+    <div class="product-list">
+      {% for product in products %}
+      <div class="product">
+        <div class="product-title">
+          <img src="{{product.product_image.url}}" alt="" class="product-img" />
+        </div>
+        <div class="product-body">
+          <h3><a href="#">{{product.name}}</a></h3>
+          <p>NGN{{product.price}}</p>
+          <p>{{product.description}}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="add-products">
+    <div class="form">
+      <h1>Add Product</h1>
+      <div class="form-fields">
+        <form action="{% url 'products' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="username">
+            <input type="text" placeholder="Product Name" name="name" />
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="username">
+            <input type="text" placeholder="Product Price" name="price" />
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="username">
+            <input type="text" placeholder="Product Description" name="description" />
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="username">
+            <input type="file" placeholder="Product Description" name="product_image" />
+            <i class="fa-solid fa-user"></i>
+          </div>
+          {% if message %}
+          <p class="message">{{message}}</p>
+          {% endif %}
+          <input class="btn" type="submit" value="Add Product" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock content %}
