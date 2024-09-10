@@ -78,3 +78,7 @@
 .product-details a {
     margin-top: 2rem;
 }
+
+.product-details p {
+    margin-bottom: 0.5rem;
+}

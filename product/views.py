@@ -23,14 +23,23 @@ def product_view(request):
 
 def product_details(request, pk):
     product = Product.objects.get(id=pk)
+    if request.user.is_authenticated:
+        try:
+            cart = Cart.objects.get(user=request.user)
+            products = cart.products.all()
+        except Cart.DoesNotExist:
+            products = []
     context = {
         "product": product,
+        "products": products,
     }
     return render(request, "product/product_detail.html", context)
 
 
 def add_to_cart(request):
+    print("Add to Cart")
     if request.method == "POST":
+        print("Add to cart Post request")
         product_id = request.POST.get("product_id")
         product = Product.objects.get(id=product_id)
 
@@ -40,7 +49,6 @@ def add_to_cart(request):
         except Cart.DoesNotExist:
             cart = Cart.objects.create(user=user)
         mod_cart = cart.products.add(product)
-        return render(request, "product/add_to_cart.html")
-    return render(request, "product/add_to_cart.html")
+        return None
 
     

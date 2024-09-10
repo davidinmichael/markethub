@@ -1,12 +1,37 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="product-details">
-    <h1>Product Details</h1>
-    <h2>{{product.name}}</h2>
-    <p>NGN{{product.price}}</p>
-    <p>{{product.description}}</p>
-    <a href="" class="btn">Buy Now</a>
+  <h1>Product Details</h1>
+  <h2>{{product.name}}</h2>
+  <p>NGN{{product.price}}</p>
+  <p>{{product.description}}</p>
+  <a
+    class="btn"
+    hx-post="{% url 'add-cart' %}"
+    hx-target="#cart"
+    hx-vals='{"product_id": "{{ product.id }}"}'
+    hx-swap="innerHTML"
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+    >Add to Cart</a
+  >
 </div>
-  
+
+<div class="cart">
+  <h2>Your Cart</h2>
+  {% if products %} {% for product in products %}
+  <div class="product">
+    <div class="product-title">
+      <img src="{{product.product_image.url}}" alt="" class="product-img" />
+    </div>
+    <div class="product-body">
+      <h3>
+        <a href="{% url 'product_detail' product.id %}">{{product.name}}</a>
+      </h3>
+      <p>NGN{{product.price}}</p>
+      <!-- <p>{{product.description}}</p> -->
+    </div>
+  </div>
+
+  {% endfor %} {% endif %}
+</div>
+
 {% endblock content %}
