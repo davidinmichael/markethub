@@ -7,9 +7,7 @@
   <a
     class="btn"
     hx-post="{% url 'add-cart' %}"
-    hx-target="#cart"
     hx-vals='{"product_id": "{{ product.id }}"}'
-    hx-swap="innerHTML"
     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
     >Add to Cart</a
   >

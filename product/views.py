@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.http import HttpResponse
 
 from .models import *
 from .forms import *
@@ -49,6 +50,6 @@ def add_to_cart(request):
         except Cart.DoesNotExist:
             cart = Cart.objects.create(user=user)
         mod_cart = cart.products.add(product)
-        return None
+        return HttpResponse(status=204)
 
     
