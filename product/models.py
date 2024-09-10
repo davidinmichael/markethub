@@ -4,6 +4,8 @@ from django.db import models
 import uuid
 from account.models import *
 
+from decimal import Decimal
+
 
 class Product(models.Model):
     name = models.CharField(max_length=50)
@@ -20,3 +22,15 @@ class Product(models.Model):
         if not self.product_id:
             self.product_id = str(uuid.uuid4()).replace('-', "").upper()[:10]
         return super().save(*args, **kwargs)
+    
+
+class Cart(models.Model):
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True)
+    products = models.ManyToManyField(Product, related_name="cart")
+    total_amount = models.DecimalField(decimal_places=2, null=True, blank=True, max_digits=12)
+
+    def get_total_amount(self):
+        total = Decimal(0)
+        for product in self.products.all():
+            total += product.price
+        return total
